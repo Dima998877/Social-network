@@ -8,18 +8,19 @@ import Dialogs from './components/Dialogs/Dialogs';
 import Music from './components/Music/Music';
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
+import props from 'prop-types';
 
-
-const App = () => {
+const App = (props) => {
+  
   return (
     <BrowserRouter>
       <div className='app-wrapper'>
         <Header />
-        <Navbar />
+        <Navbar />  
         <div className='app-wrapper-content'>
           <Routes>
-            <Route path='*' element={<Profile />} />
-            <Route path='/dialogs/*' element={<Dialogs />} />
+            <Route path='*' element={<Profile state={props.state.profilePage}/>} />
+            <Route path='/dialogs/*' element={<Dialogs state={props.state.dialogsPage}/>} />
             <Route path='/news' element={<News />} />
             <Route path='/music' element={<Music />} />
             <Route path='/settings' element={<Settings />} />
