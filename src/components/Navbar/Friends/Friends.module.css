@@ -32,22 +32,3 @@
   font-weight: 600;
 
 }
-.friends_bar {
-  color: var(--main-white);
-}
-.friends_items_list{
-  display: flex;
-  justify-content: space-between;
-  margin-right: 20px;
-}
-.friends_item {
-}
-.friend_icon {}
-.friend_icon img {
-  width: 40px;
-  border-radius: 50%;
-}
-.friend_icon {}
-.friend_name {
-  
-}
