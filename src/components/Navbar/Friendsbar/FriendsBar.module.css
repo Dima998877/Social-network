@@ -1,0 +1,44 @@
+
+
+.friends_bar {
+  color: var(--main-white);
+}
+.friends_wrap {
+ 
+}
+.friends_header {
+display: inline-block;
+margin: 0 8px 16px 0;
+}
+.friends_online{
+  display: inline-block;
+  font-size: small;
+  color: green;
+}
+.friends_items_list{
+  display: grid;
+  grid-template-columns: 40px 40px 40px;
+  grid-gap: 16px;
+  justify-items: start;
+  grid-auto-flow: row;
+}
+
+.friends_item {
+  overflow: hidden;
+  margin: 0;
+
+}
+
+/* .friend_icon {} */
+.friend_icon img {
+  display: block;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+  border-radius: 45%;
+  
+}
+
+.friend_name {
+text-align: center;
+}

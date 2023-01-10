@@ -1,7 +1,7 @@
 .nav {
    grid-area: nav;
    background-color: var(--main-black);
-   padding: 40px 0 0 20px;
+   padding: 40px 20px 0 20px;
  }
 .logo {
   width: 60px;

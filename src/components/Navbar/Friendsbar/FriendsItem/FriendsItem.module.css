@@ -1,0 +1,29 @@
+
+
+.friends_bar {
+  color: var(--main-white);
+}
+.friends_items_list{
+  display: grid;
+  grid-template-columns: 60px 60px 60px;
+  
+}
+.friends_item {
+  overflow: hidden;
+  margin: 4px;
+
+}
+
+/* .friend_icon {} */
+.friend_icon img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  border-radius: 50%;
+  
+}
+/* .friend_icon {} */
+.friend_name {
+text-align: center;
+}

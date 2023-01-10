@@ -1,16 +1,11 @@
 import React from "react";
 import s from './Dialogs.module.css'
-import props from 'prop-types';
 import DialogsItem from './DialogsItem/DialogsItem'
 import Message from "./Message/Message";
 import dialogs from "../..";
 
 
 const Dialogs = (props) => {
-
-   
-   
-    
 
    let dialogsElement = props.state.dialogs.map( d => <DialogsItem name={d.name} id={d.id} /> )
 
