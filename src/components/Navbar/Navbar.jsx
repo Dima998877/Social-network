@@ -2,7 +2,9 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import s from "./Navbar.module.css";
 import Friendsbar from "./Friendsbar/FriendsBar";
-const Navbar = () => {
+const Navbar = (props) => {
+  
+  
   return (
     <nav className={s.nav}>
       <img src='https://www.svgrepo.com/show/426053/git.svg' className={s.logo} alt='logo' />
@@ -13,7 +15,7 @@ const Navbar = () => {
         <div className={s.nav_link}><NavLink to='/music' className={navData => navData.isActive ? s.active : s.item}>Music</NavLink></div>
         <div className={s.nav_link}><NavLink to='/settings' className={navData => navData.isActive ? s.active : s.item}>Settings</NavLink></div>
       </div>
-      <Friendsbar />
+      <Friendsbar state={props.state}/>
     </nav>
   )
 }

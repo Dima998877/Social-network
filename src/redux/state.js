@@ -13,11 +13,20 @@ let state = {
          { name: 'Pete', id: '2' },
          { name: 'Nick', id: '3' },
          { name: 'Marie', id: '4' },
-    ],
+      ],
       messages: [
          { message: 'How are you today?', id: '1' },
          { message: 'Look what I found!', id: '2' },
          { message: 'Hi!', id: '3' },
+      ],
+   },
+   friendsBar: {
+      friendsData: [
+         { id: 1, name: 'Dima' },
+         { id: 2, name: 'Ann' },
+         { id: 3, name: 'Marie' },
+         { id: 4, name: 'Pete' },
+         { id: 5, name: 'Mike' }
       ],
    },
 }
