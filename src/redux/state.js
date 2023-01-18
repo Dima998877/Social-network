@@ -2,7 +2,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-let store = {
+
+const store = {
    _state: {
       profilePage: {
          posts: [
@@ -36,8 +37,8 @@ let store = {
          ],
       },
    },
-   _callSubscriber() {},
-   
+   _callSubscriber() { },
+
    getState() {
       return this._state;
    },
@@ -56,12 +57,22 @@ let store = {
          this._state.profilePage.newPostText = '';
          this._callSubscriber(this._state);
       }
-      else  if (action.type === 'UPDATE-NEW-POST-TEXT'){
+      else if (action.type === 'UPDATE-NEW-POST-TEXT') {
          this._state.profilePage.newPostText = action.newText;
-      this._callSubscriber(this._state);
+         this._callSubscriber(this._state);
       }
    }
-   
-}; 
 
+};
+
+const add_post = 'ADD-POST'
+
+export const  addPostActionCreator = () => ({type: add_post})
+
+const update_new_post_text = 'UPDATE-NEW-POST-TEXT'
+
+export const onPostChangeActionCreator = (text) => ({
+      type: update_new_post_text,
+      newText: text,
+   })
 export default store;
