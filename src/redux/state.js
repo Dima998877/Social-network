@@ -3,8 +3,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 const add_post = 'ADD-POST'
-
 const update_new_post_text = 'UPDATE-NEW-POST-TEXT'
+const add_message = 'ADD-MESSAGE'
+const update_new_message_text = 'UPDATE-NEW-MESSAGE-TEXT'
 
 const store = {
    _state: {
@@ -51,7 +52,7 @@ const store = {
    },
 
    dispatch(action) {
-      if (action.type === "ADD-POST") {
+      if (action.type === add_post) {
          let newPost = {
             id: 6,
             message: this._state.profilePage.newPostText,
@@ -61,28 +62,32 @@ const store = {
          this._state.profilePage.newPostText = '';
          this._callSubscriber(this._state);
       }
-      else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+      else if (action.type === update_new_post_text) {
          this._state.profilePage.newPostText = action.newText;
          this._callSubscriber(this._state);
       }
+      else if (action.type === add_message) {
+         let newMessage = {
+            id: 4,
+            message: this._state.dialogsPage.newMessageText,
+         }
+         this._state.dialogsPage.messages.push(newMessage)
+         this._state.dialogsPage.newMessageText = '';
+         this._callSubscriber(this._state);
+      }
+      else if (action.type === update_new_message_text) {
+         this._state.dialogsPage.newMessageText = action.newMessageText;
+         this._callSubscriber(this._state);
+      }
    }
-
 };
 
-export const addNewMessageToArray = (newMessageText) => {
-   let newMessage = {
-      id: 4,
-      message: newMessageText,
-   }
-   store._state.dialogsPage.messages.push(newMessage)
-   store._state.dialogsPage.newMessageText = '';
-   store._callSubscriber(store._state);
-}
+export const addMessageActionCreator = () => ({ type: add_message})
 
-export const updateNewMessageText = (newMessageText) => {
-   store._state.dialogsPage.newMessageText = newMessageText;
-   store._callSubscriber(store._state);
-}
+export const onMessageChangeActionCreator = (message) => ({
+   type: update_new_message_text,
+   newMessageText: message,
+})
 
 export const addPostActionCreator = () => ({ type: add_post })
 
