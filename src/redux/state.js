@@ -2,6 +2,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
+const add_post = 'ADD-POST'
+
+const update_new_post_text = 'UPDATE-NEW-POST-TEXT'
 
 const store = {
    _state: {
@@ -22,10 +25,11 @@ const store = {
             { name: 'Marie', id: '4' },
          ],
          messages: [
-            { message: 'How are you today?', id: '1' },
-            { message: 'Look what I found!', id: '2' },
-            { message: 'Hi!', id: '3' },
+            { id: '1', message: 'How are you today?' },
+            { id: '2', message: 'Look what I found!' },
+            { id: '3', message: 'Hi!' },
          ],
+         newMessageText: 'all work'
       },
       friendsBar: {
          friendsData: [
@@ -65,14 +69,26 @@ const store = {
 
 };
 
-const add_post = 'ADD-POST'
+export const addNewMessageToArray = (newMessageText) => {
+   let newMessage = {
+      id: 4,
+      message: newMessageText,
+   }
+   store._state.dialogsPage.messages.push(newMessage)
+   store._state.dialogsPage.newMessageText = '';
+   store._callSubscriber(store._state);
+}
 
-export const  addPostActionCreator = () => ({type: add_post})
+export const updateNewMessageText = (newMessageText) => {
+   store._state.dialogsPage.newMessageText = newMessageText;
+   store._callSubscriber(store._state);
+}
 
-const update_new_post_text = 'UPDATE-NEW-POST-TEXT'
+export const addPostActionCreator = () => ({ type: add_post })
 
 export const onPostChangeActionCreator = (text) => ({
-      type: update_new_post_text,
-      newText: text,
-   })
+   type: update_new_post_text,
+   newText: text,
+})
+
 export default store;
