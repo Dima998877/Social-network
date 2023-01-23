@@ -3,14 +3,13 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 // import reportWebVitals from './reportWebVitals';
 import App from './App';
-// import { addPost, updateNewPostText, subscribe, store } from './redux/state';
-import store from './redux/state'
+import store from './redux/redux-store'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 let renderEntireTree = (state) => {
+  debugger;
 root.render(
-
   <React.StrictMode>
     <App 
     state={state} 
@@ -18,8 +17,11 @@ root.render(
   </React.StrictMode>
 );
 }
-store.subscribe(renderEntireTree);
 renderEntireTree(store.getState());
+
+store.subscribe( () => {
+  let state = store.getState();
+  renderEntireTree(state)});
 
 
 // reportWebVitals();
