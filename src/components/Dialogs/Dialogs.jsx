@@ -6,19 +6,19 @@ import { addMessageActionCreator, onMessageChangeActionCreator } from "../../red
 
 const Dialogs = (props) => {
 
-   let dialogsElement = props.state.dialogs.map(d => <DialogsItem name={d.name} id={d.id} />)
+   let dialogsElement = props.dialogs.map(d => <DialogsItem name={d.name} id={d.id} />)
 
-   let messagesElement = props.state.messages.map(m => <Message message={m.message} id={m.id} />)
+   let messagesElement = props.messages.map(m => <Message message={m.message} id={m.id} />)
 
    let newMessage = React.createRef();
 
    let addMessage = () => {
-     props.dispatch(addMessageActionCreator());
+   props.addMessage()
    }
 
    let updateNewMessage = () => {
       let message = newMessage.current.value;
-      props.dispatch(onMessageChangeActionCreator(message));
+      props.updateNewMessage(message);
    }
    return (
 
@@ -33,7 +33,7 @@ const Dialogs = (props) => {
             </div>
          </div>
          <div className={s.text_input}>
-            <textarea onChange={updateNewMessage} ref={newMessage} value={props.state.newMessageText} className={s.text_input_area}></textarea>
+            <textarea onChange={updateNewMessage} ref={newMessage} value={props.newMessageText} className={s.text_input_area}></textarea>
             <button onClick={addMessage} className={s.text_input_button}>Send</button>
          </div>
       </div>
