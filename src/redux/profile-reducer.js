@@ -24,11 +24,10 @@ export const profileReducer = (state = initialState, action) => {
             posts: [...state.posts, newPost],
             newPostText: ''
          };
-      case update_new_post_text: {
+      case update_new_post_text: 
          return {
             ...state,
             newPostText: action.newText};
-      }
       default:
          return state;
    } 

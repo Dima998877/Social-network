@@ -10,6 +10,7 @@ import Settings from './components/Settings/Settings';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import store from './redux/redux-store';
 import { Provider } from 'react-redux';
+import UsersContainer from './components/Users/UsersContainer';
 
 const App = (props) => {
 
@@ -22,7 +23,8 @@ const App = (props) => {
           <div className='app-wrapper-content'>
             <Routes>
               <Route path='*' element={<Profile />} />
-              <Route path='/dialogs/*' element={<DialogsContainer />} />
+              <Route path='/dialogs/' element={<DialogsContainer />} />
+              <Route path='/users/' element={<UsersContainer />} />
               <Route path='/news' element={<News />} />
               <Route path='/music' element={<Music />} />
               <Route path='/settings' element={<Settings />} />
@@ -31,7 +33,6 @@ const App = (props) => {
         </div>
       </Provider>
     </BrowserRouter>
-
   )
 };
 
