@@ -4,6 +4,7 @@ import { followAC, setCurrentPageAC, setTotalUserCountAC, setUsersAC, unfollowAC
 import Axios from 'axios'
 import Users from './Users'
 import preloader from '../../assets/images/Preloader.gif'
+import Preloader from "../Common/Preloader/Preloader";
 
 
 class UsersContainer extends React.Component {
@@ -28,7 +29,7 @@ class UsersContainer extends React.Component {
 
    render() {
       return <>
-         {this.props.isFetching ? <img src={preloader} alt='' /> : 
+         {this.props.isFetching ? <Preloader /> : 
          <Users
             totalUsersCount={this.props.totalUsersCount}
             pageSize={this.props.pageSize}
