@@ -6,3 +6,12 @@
    width: 60px;
    background-color: aliceblue;
  }
+ .login {
+  color: white;
+  float: right;
+  margin-right: 40px;
+  margin-top: 20px;
+ }
+ .login a {
+  
+ }
