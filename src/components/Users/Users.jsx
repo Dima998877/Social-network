@@ -29,25 +29,31 @@ const Users = (props) => {
                </div>
                <div>
                   {u.followed
-                     ? <button disabled={props.followInProgress} onClick={() => {
-                        props.tongleFollowInProgress(true)
-                        usersAPI.setUnfollow(u.id)
-                           .then((data) => {
-                              if (data.resultCode === 0) {
-                                 props.unfollow(u.id)
-                              }
-                              props.tongleFollowInProgress(false)
-                           })
+                     ? <button 
+                     disabled={props.followInProgress.some(id => id === u.id)} 
+                     onClick={() => {
+                        props.unfollow(u.id)
+                        // props.tongleFollowInProgress(true, u.id)
+                        // usersAPI.setUnfollow(u.id)
+                        //    .then((data) => {
+                        //       if (data.resultCode === 0) {
+                        //          props.unfollow(u.id)
+                        //       }
+                        //       props.tongleFollowInProgress(false, u.id)
+                        //    })
                      }
                      }>Unfollow</button>
-                     : <button disabled={props.followInProgress} onClick={() => {
-                        props.tongleFollowInProgress(true)
-                        usersAPI.setFollow(u.id).then((data) => {
-                           if (data.resultCode === 0) {
-                              props.follow(u.id)
-                           }
-                           props.tongleFollowInProgress(false)
-                        })
+                     : <button 
+                     disabled={props.followInProgress.some(id => id === u.id)} 
+                     onClick={() => {
+                        props.follow(u.id)
+                        // props.tongleFollowInProgress(true, u.id)
+                        // usersAPI.setFollow(u.id).then((data) => {
+                        //    if (data.resultCode === 0) {
+                        //       props.follow(u.id)
+                        //    }
+                        //    props.tongleFollowInProgress(false, u.id)
+                        // })
                      }
                      }>Follow</button>}
                </div>
