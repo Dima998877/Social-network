@@ -88,8 +88,7 @@ export const follow = (userId) => {
          dispatch(tongleFollowInProgress(false, userId))
       })
    }
-}
-
+}  
 export const unfollow = (userId) => {
    return (dispatch) => {
       dispatch(tongleFollowInProgress(true, userId))
