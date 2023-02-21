@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
       newMessageText: state.dialogsPage.newMessageText,
    }
 }
-c
+let AuthRedirectComponent = withAuthRedirect(Dialogs)
 
 const DialogsContainer = connect(mapStateToProps, {updateNewMessage, addMessage,})(AuthRedirectComponent)
 export default DialogsContainer;
