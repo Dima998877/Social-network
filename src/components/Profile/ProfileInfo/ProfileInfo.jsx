@@ -7,16 +7,16 @@ console.log(version);
 
 const ProfileInfo = (props) => {
   if (!props.profile) {
-    return <Preloader/>
+    return <Preloader />
   }
-
   return <div className={styles.profile_info}>
     <div className={styles.wallpaper_wrapper}>
       <img src={wallpaper} className={styles.wallpaper} alt='wallpaper' />
-      </div>
+    </div>
     <div className={styles.profile_img_container}>
-      <img src={props.profile.photos.large} alt='large_user_icon' className={styles.profile_img}/>
-      icon+discrip</div>
+      <img src={props.profile.photos.large} alt='large_user_icon' className={styles.profile_img} />
+    </div>
+    
   </div>
 }
 
