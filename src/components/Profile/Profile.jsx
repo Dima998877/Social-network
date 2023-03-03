@@ -7,7 +7,7 @@ import ProfileStatus from './ProfileStatus/ProfileStatus';
 const Profile = (props) => {
   return <div className={styles.profile}>
     <ProfileInfo profile={props.profile}/>
-    <ProfileStatus  status={props.status} />
+    <ProfileStatus  status={props.status} updateProfileStatus={props.updateProfileStatus}/>
     <MyPostsContainer />
   </div>
 }

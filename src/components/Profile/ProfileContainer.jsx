@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Profile from './Profile';
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { getUserProfile, getProfileStatus } from '../../redux/profile-reducer';
+import { getUserProfile, getProfileStatus, updateProfileStatus } from '../../redux/profile-reducer';
 import { withAuthRedirect } from '../../Hoc/withAuthRedirect';
 import { compose } from 'redux';
 
@@ -17,7 +17,7 @@ class ProfileContainer extends React.Component {
    }
 
    render() {
-      return <Profile {...this.props} profile={this.props.profile} status={this.props.status}/>
+      return <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateProfileStatus={this.props.updateProfileStatus}/>
    }
 }
 
@@ -44,7 +44,7 @@ function withRouter(Component) {
 
 
 export default compose(
-   connect(mapStateToProps, { getUserProfile, getProfileStatus }),
+   connect(mapStateToProps, { getUserProfile, getProfileStatus, updateProfileStatus }),
    withRouter,
    withAuthRedirect
 )(ProfileContainer)

@@ -13,7 +13,7 @@ const initialState = {
    ],
    newPostText: 'start typing your post',
    profile: null,
-   profileStatus: "that's how I leave"
+   profileStatus: ''
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -55,4 +55,13 @@ export const setProfileStatus = (data) => ({ type: SET_PROFILE_STATUS, data})
 export const getProfileStatus = (userId) => (dispatch) => {
    profileAPI.getProfileStatus(userId).then(data => dispatch(setProfileStatus(data)))
 }
+export const updateProfileStatus = (status) => (dispatch) => {
+   profileAPI.updateProfileStatus(status).then(data => {
+      if (data.resultCode === 0){
+      dispatch(setProfileStatus(status))
+   }
+   // return alert ('updateProfileStatus error')
+   })
+}
+
 export default profileReducer
