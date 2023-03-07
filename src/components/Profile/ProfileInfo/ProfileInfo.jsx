@@ -3,6 +3,7 @@ import Preloader from '../../Common/Preloader/Preloader';
 import styles from './ProfileInfo.module.css';
 import wallpaper from '../../../assets/images/wallpaper.png'
 import noUserImage from '../../../assets/images/user-profile-picture.jpeg'
+
 const ProfileInfo = (props) => {
   if (!props.profile) {
     return <Preloader />
