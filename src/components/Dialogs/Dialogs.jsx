@@ -1,8 +1,21 @@
 import React from "react";
 import { Navigate } from 'react-router-dom';
-import s from './Dialogs.module.css'
+import styles from './Dialogs.module.css'
 import DialogsItem from './DialogsItem/DialogsItem'
 import Message from "./Message/Message";
+import { Field, reduxForm } from 'redux-form'
+
+const AddMessageForm = (props) => {
+   return (
+      <form onSubmit={props.handleSubmit} className={styles.text_input}>
+         <Field component={'textarea'} name={'newMessageBody'} placeholder={'Enter your message'}
+         className={styles.text_input_area} />
+         <button className={styles.text_input_button}>Send</button>
+      </form>
+   )
+}
+
+const AddMessageReduxForm = reduxForm({ form: 'dialogsMessageForm'})(AddMessageForm)
 
 const Dialogs = (props) => {
 
@@ -10,33 +23,22 @@ const Dialogs = (props) => {
 
    let messagesElement = props.messages.map(m => <Message message={m.message} id={m.id} />)
 
-   let newMessage = React.createRef();
+   let addMessage = (values) => { props.addMessage(values.newMessageBody)}
 
-   let addMessage = () => {
-   props.addMessage()
-   }
-
-   let updateNewMessage = () => {
-      let message = newMessage.current.value;
-      props.updateNewMessage(message);
-   }
-   if(!props.isAuth) return <Navigate to='/login'/>
+   if (!props.isAuth) return <Navigate to='/login' />
 
    return (
-      <div className={s.dialogs}>
+      <div className={styles.dialogs}>
          <h3>Dialogs</h3>
-         <div className={s.dialogs_items}>
-            <div className={s.contact_list}>
+         <div className={styles.dialogs_items}>
+            <div className={styles.contact_list}>
                {dialogsElement}
             </div>
-            <div className={s.messages}>
+            <div className={styles.messages}>
                {messagesElement}
             </div>
          </div>
-         <div className={s.text_input}>
-            <textarea onChange={updateNewMessage} ref={newMessage} value={props.newMessageText} className={s.text_input_area}></textarea>
-            <button onClick={addMessage} className={s.text_input_button}>Send</button>
-         </div>
+        <AddMessageReduxForm onSubmit={addMessage} />
       </div>
    )
 }
