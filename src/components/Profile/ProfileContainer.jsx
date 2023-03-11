@@ -17,15 +17,18 @@ class ProfileContainer extends React.Component {
    }
 
    render() {
-      return <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateProfileStatus={this.props.updateProfileStatus}/>
+      return <Profile {...this.props}
+         profile={this.props.profile}
+         status={this.props.status}
+         updateProfileStatus={this.props.updateProfileStatus} />
    }
 }
 
 let mapStateToProps = (state) => {
-   return ({ 
+   return ({
       profile: state.profilePage.profile,
       status: state.profilePage.profileStatus
-    })
+   })
 }
 function withRouter(Component) {
    function ComponentWithRouterProp(props) {
