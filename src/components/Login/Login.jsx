@@ -1,5 +1,5 @@
 import React from 'react'
-import style from './Login.module.css'
+import styles from './Login.module.css'
 import { Field, reduxForm } from 'redux-form'
 import { login } from '../../redux/auth-reducer'
 import { connect } from 'react-redux'
@@ -9,7 +9,8 @@ import {required } from '../../utils/validators/validators'
 
 const LoginForm = (props) => { 
    return (
-   <form onSubmit={props.handleSubmit}className={style.login_container}>
+   <form onSubmit={props.handleSubmit}className={styles.login_container}>
+      <div className={styles.formSummaryError}>{props.error}</div>
       <div><Field placeholder={'Email'} name={'email'} component={Input} validate={[required]} /></div>
       <div><Field placeholder={'Password'} name={'password'} component={Input} type={'password'} validate={[required]} /></div>
       <div><Field type={'checkbox'} name={'rememberMe'} component={'input'}/>Remember me</div>
