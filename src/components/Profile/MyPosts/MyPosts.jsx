@@ -2,21 +2,26 @@ import React from "react";
 import styles from './MyPosts.module.css';
 import Post from "./Post/Post";
 import { Field, reduxForm } from 'redux-form'
+import { maxLengthCreator, required } from '../../../utils/validators/validators';
+import { Textarea } from '../../Common/FormControls/FormControls';
+
+const maxLength15 = maxLengthCreator(15)
 
 const MyPostForm = (props) => {
   return (
-    <form onSubmit={props.handleSubmit}  className={styles.text_input}>
-      <Field component={'textarea'} name={'postText'} placeholder={'Star typing your post'} className={styles.text_input_area}  />
+    <form onSubmit={props.handleSubmit} className={styles.text_input}>
+      <Field component={Textarea} name={'postText'} validate={[required, maxLength15]}
+        placeholder={'Star typing your post'} className={styles.text_input_area} />
       <button className={styles.text_input_button} > Publish</button>
     </form>
   )
 }
-const MyPostReduxForm = reduxForm({ form: 'post'})(MyPostForm)
+const MyPostReduxForm = reduxForm({ form: 'post' })(MyPostForm)
 const MyPosts = (props) => {
 
   let postsElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount} />);
 
-  let addPost = (values) => {props.addPost(values.postText)}
+  let addPost = (values) => { props.addPost(values.postText) }
 
   return (
     <div className={styles.posts_container}>
