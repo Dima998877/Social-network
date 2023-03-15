@@ -16,8 +16,7 @@ import Login from './components/Login/Login';
 const App = (props) => {
 
   return (
-    <BrowserRouter>
-      <Provider store={store}>
+    
         <div className='app-wrapper'>
           <HeaderContainer/>
           <Navbar store={store} />
@@ -33,8 +32,7 @@ const App = (props) => {
             </Routes>
           </div>
         </div>
-      </Provider>
-    </BrowserRouter>
+     
   )
 };
 export default App;
