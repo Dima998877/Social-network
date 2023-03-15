@@ -1,22 +1,30 @@
 
 import './App.css';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Navbar from './components/Navbar/Navbar';
 import Music from './components/Music/Music';
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import store from './redux/redux-store';
-import { Provider } from 'react-redux';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
+import { Component } from 'react';
+import { initialiseApp } from './redux/app-reducer';
+import { connect } from 'react-redux';
+import Preloader from './components/Common/Preloader/Preloader';
 
-const App = (props) => {
-
+class App extends Component {
+  componentDidMount() {
+    this.props.initialiseApp()
+ }
+ render(){
+  if (!this.props.initialised) {
+  return <Preloader />
+}
   return (
-    
         <div className='app-wrapper'>
           <HeaderContainer/>
           <Navbar store={store} />
@@ -33,6 +41,10 @@ const App = (props) => {
           </div>
         </div>
      
-  )
+  )}
 };
-export default App;
+
+const mapStateToProps = (state) => ({
+  initialised: state.app.initialised
+})
+export default connect(mapStateToProps, { initialiseApp })(App)
