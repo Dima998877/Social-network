@@ -66,15 +66,14 @@ export const setIsFetching = (currentState) => ({ type: SET_IS_FETCHING, current
 export const tongleFollowInProgress = (currentState, userId) => ({ type: TONGLE_FOLLOW_IN_PROGRESS, currentState, userId })
 export default usersReducer
 
-export const getUsers = (currentPage, pageSize) => {
+export const requestUsers = (page, pageSize) => {
    return (dispatch) => {
       dispatch(setIsFetching(true))
-      usersAPI.getUsers(currentPage, pageSize).then((data) => {
-         dispatch(setCurrentPage(currentPage))
+      usersAPI.getUsers(page, pageSize).then((data) => {
+         dispatch(setCurrentPage(page))
          dispatch(setIsFetching(false))
          dispatch(setUsers(data.items))
          dispatch(setTotalUsersCount(data.totalCount))
-
       })
    }
 }
