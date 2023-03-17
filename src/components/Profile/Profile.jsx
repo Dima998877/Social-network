@@ -2,12 +2,12 @@ import React from "react";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import styles from './Profile.module.css';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import ProfileStatus from './ProfileStatus/ProfileStatus';
+import ProfileStatusWithHooks from './ProfileStatus/ProfileStatusWithHooks';
 
 const Profile = (props) => {
   return <div className={styles.profile}>
     <ProfileInfo profile={props.profile}/>
-    <ProfileStatus  status={props.status} updateProfileStatus={props.updateProfileStatus}/>
+    <ProfileStatusWithHooks  status={props.status} updateProfileStatus={props.updateProfileStatus}/>
     <MyPostsContainer />
   </div>
 }
