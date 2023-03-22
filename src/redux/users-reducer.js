@@ -1,12 +1,12 @@
 import { usersAPI } from '../API/Api'
 
-const FOLLOW = 'FOLLOW'
-const UNFOLLOW = 'UNFOLLOW'
-const SET_USERS = 'SET_USERS'
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
-const SET_TOTAL_USER_COUNT = 'SET_TOTAL_USER_COUNT'
-const SET_IS_FETCHING = 'SET_IS_FETCHING'
-const TONGLE_FOLLOW_IN_PROGRESS = 'TONGLE_FOLLOW_IN_PROGRESS'
+const FOLLOW = 'users/FOLLOW'
+const UNFOLLOW = 'users/UNFOLLOW'
+const SET_USERS = 'users/SET_USERS'
+const SET_CURRENT_PAGE = 'users/SET_CURRENT_PAGE'
+const SET_TOTAL_USER_COUNT = 'users/SET_TOTAL_USER_COUNT'
+const SET_IS_FETCHING = 'users/SET_IS_FETCHING'
+const TONGLE_FOLLOW_IN_PROGRESS = 'users/TONGLE_FOLLOW_IN_PROGRESS'
 
 const initialState = {
    users: [],
@@ -64,7 +64,6 @@ export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, curren
 export const setTotalUsersCount = (totalCount) => ({ type: SET_TOTAL_USER_COUNT, totalCount })
 export const setIsFetching = (currentState) => ({ type: SET_IS_FETCHING, currentState })
 export const tongleFollowInProgress = (currentState, userId) => ({ type: TONGLE_FOLLOW_IN_PROGRESS, currentState, userId })
-export default usersReducer
 
 export const requestUsers = (page, pageSize) => {
    return (dispatch) => {
@@ -87,7 +86,7 @@ export const follow = (userId) => {
          dispatch(tongleFollowInProgress(false, userId))
       })
    }
-}  
+}
 export const unfollow = (userId) => {
    return (dispatch) => {
       dispatch(tongleFollowInProgress(true, userId))
@@ -99,3 +98,4 @@ export const unfollow = (userId) => {
       })
    }
 }
+export default usersReducer

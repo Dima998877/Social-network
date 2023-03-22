@@ -4,10 +4,10 @@ import styles from './Profile.module.css';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import ProfileStatusWithHooks from './ProfileStatus/ProfileStatusWithHooks';
 
-const Profile = (props) => {
+const Profile = ({profile, status, isOwner, updateProfileStatus, savePhoto}) => {
   return <div className={styles.profile}>
-    <ProfileInfo profile={props.profile}/>
-    <ProfileStatusWithHooks  status={props.status} updateProfileStatus={props.updateProfileStatus}/>
+    <ProfileInfo profile={profile} isOwner={isOwner} savePhoto={savePhoto}/>
+    <ProfileStatusWithHooks  status={status} updateProfileStatus={updateProfileStatus}/>
     <MyPostsContainer />
   </div>
 }

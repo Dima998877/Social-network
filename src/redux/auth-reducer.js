@@ -1,7 +1,7 @@
 import { authAPI } from '../API/Api'
 import { stopSubmit } from 'redux-form'
 
-const SET_USER_DATA = 'SET_USER_DATA'
+const SET_USER_DATA = 'auth/SET_USER_DATA'
 
 const initialState = {
    userId: null,
@@ -22,7 +22,6 @@ const authReducer = (state = initialState, action) => {
    }
 }
 export const setAuthUserData = (userId, email, login, isAuth) => ({ type: SET_USER_DATA, payload: { userId, email, login, isAuth } })
-export default authReducer
 export const getAuthUserData = () => (dispatch) => {
    return authAPI.authMe()
       .then((data) => {
@@ -49,3 +48,4 @@ export const logout = () => (dispatch) => {
       }
    })
 }
+export default authReducer
