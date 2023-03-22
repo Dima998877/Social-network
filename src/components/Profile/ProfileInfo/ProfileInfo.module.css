@@ -1,5 +1,5 @@
 .profile_info{
-   position: relative;
+   /* position: relative; */
 }
  .wallpaper {
    width: 540px;
@@ -8,10 +8,19 @@
  }
 
  .profile_img_container{
-   position: absolute;
-   margin-top: -100px;
+   position: relative;
+   display: block;
+   width: 20%;
  }
  .profile_img {
+  margin: 20px 0 20px 20px;
+  float: left;
    border-radius: 50%;
-   width: 200px;
+   width: 100%;
+   height: auto;
+ }
+ .photo_input {
+position:absolute;
+top: 50%;
+left: 50;
  }

@@ -15,14 +15,14 @@ const ProfileInfo = ({ profile, isOwner, savePhoto }) => {
     }
   }
   return <div className={styles.profile_info}>
-    <div className={styles.wallpaper_wrapper}>
+    {/* <div className={styles.wallpaper_wrapper}>
       <img src={wallpaper} className={styles.wallpaper} alt='wallpaper' />
-    </div>
+    </div> */}
+    
     <div className={styles.profile_img_container}>
       <img src={profile.photos.large || noUserImage} alt='large_user_icon' className={styles.profile_img} />
-      {isOwner && <input type='file' onChange={onMainPhotoSelected} />}
-    </div>
-
+      {isOwner && <input className={styles.photo_input} name='photoFile' type='file' onChange={onMainPhotoSelected} />}
+     </div>
   </div>
 }
 
