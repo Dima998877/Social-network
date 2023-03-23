@@ -66,36 +66,33 @@ export const setIsFetching = (currentState) => ({ type: SET_IS_FETCHING, current
 export const tongleFollowInProgress = (currentState, userId) => ({ type: TONGLE_FOLLOW_IN_PROGRESS, currentState, userId })
 
 export const requestUsers = (page, pageSize) => {
-   return (dispatch) => {
+   return async (dispatch) => {
       dispatch(setIsFetching(true))
-      usersAPI.getUsers(page, pageSize).then((data) => {
-         dispatch(setCurrentPage(page))
-         dispatch(setIsFetching(false))
-         dispatch(setUsers(data.items))
-         dispatch(setTotalUsersCount(data.totalCount))
-      })
+      let res = await usersAPI.getUsers(page, pageSize)
+      dispatch(setCurrentPage(page))
+      dispatch(setIsFetching(false))
+      dispatch(setUsers(res.items))
+      dispatch(setTotalUsersCount(res.totalCount))
    }
 }
 export const follow = (userId) => {
-   return (dispatch) => {
+   return async (dispatch) => {
       dispatch(tongleFollowInProgress(true, userId))
-      usersAPI.setFollow(userId).then((data) => {
-         if (data.resultCode === 0) {
-            dispatch(followSuccess(userId))
-         }
-         dispatch(tongleFollowInProgress(false, userId))
-      })
+      let res = await usersAPI.setFollow(userId)
+      if (res.resultCode === 0) {
+         dispatch(followSuccess(userId))
+      }
+      dispatch(tongleFollowInProgress(false, userId))
    }
 }
 export const unfollow = (userId) => {
-   return (dispatch) => {
+   return async (dispatch) => {
       dispatch(tongleFollowInProgress(true, userId))
-      usersAPI.setUnfollow(userId).then((data) => {
-         if (data.resultCode === 0) {
-            dispatch(unfollowSuccess(userId))
-         }
-         dispatch(tongleFollowInProgress(false, userId))
-      })
+      let res = await usersAPI.setUnfollow(userId)
+      if (res.resultCode === 0) {
+         dispatch(unfollowSuccess(userId))
+      }
+      dispatch(tongleFollowInProgress(false, userId))
    }
 }
 export default usersReducer
