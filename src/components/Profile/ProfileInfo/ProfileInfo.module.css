@@ -8,19 +8,15 @@
  }
 
  .profile_img_container{
-   position: relative;
-   display: block;
+   display: flex;
    width: 20%;
+   flex-direction: column;
  }
  .profile_img {
   margin: 20px 0 20px 20px;
-  float: left;
    border-radius: 50%;
    width: 100%;
    height: auto;
  }
- .photo_input {
-position:absolute;
-top: 50%;
-left: 50;
- }
+ /* .photo_input {
+ } */

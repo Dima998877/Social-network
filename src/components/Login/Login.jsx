@@ -1,19 +1,19 @@
 import React from 'react'
 import styles from './Login.module.css'
-import { Field, reduxForm } from 'redux-form'
+import { reduxForm } from 'redux-form'
 import { login } from '../../redux/auth-reducer'
 import { connect } from 'react-redux'
 import { Navigate } from 'react-router-dom';
-import { Input } from '../Common/FormControls/FormControls'
+import { createField, Input } from '../Common/FormControls/FormControls'
 import {required } from '../../utils/validators/validators'
 
 const LoginForm = (props) => { 
    return (
    <form onSubmit={props.handleSubmit}className={styles.login_container}>
       <div className={styles.formSummaryError}>{props.error}</div>
-      <div><Field placeholder={'Email'} name={'email'} component={Input} validate={[required]} /></div>
-      <div><Field placeholder={'Password'} name={'password'} component={Input} type={'password'} validate={[required]} /></div>
-      <div><Field type={'checkbox'} name={'rememberMe'} component={'input'}/>Remember me</div>
+      {createField('Email', 'email', Input, [required])}
+      {createField('Password', 'password', Input, [required], {type:'password'})}
+      {createField(null, 'rememberMe', Input, null, {type:'checkbox'},'Remember me')}
       <div><button>Login</button></div>
    </form>
    )
