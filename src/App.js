@@ -1,11 +1,11 @@
-
+import React, { Suspense } from 'react';
 import './App.css';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Navbar from './components/Navbar/Navbar';
 import Music from './components/Music/Music';
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
+// import DialogsContainer from './components/Dialogs/DialogsContainer';
 import store from './redux/redux-store';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
@@ -15,33 +15,42 @@ import { Component } from 'react';
 import { initialiseApp } from './redux/app-reducer';
 import { connect } from 'react-redux';
 import Preloader from './components/Common/Preloader/Preloader';
+import { lazy } from 'react';
+
+const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer'))
 
 class App extends Component {
   componentDidMount() {
     this.props.initialiseApp()
- }
- render(){
-  if (!this.props.initialised) {
-  return <Preloader />
-}
-  return (
-        <div className='app-wrapper'>
-          <HeaderContainer/>
-          <Navbar store={store} />
-          <div className='app-wrapper-content'>
-            <Routes>
-              <Route path='/profile/:userId?' element={<ProfileContainer />} />
-              <Route path='/dialogs/' element={<DialogsContainer />} />
-              <Route path='/users/' element={<UsersContainer />} />
-              <Route path='/news' element={<News />} />
-              <Route path='/music' element={<Music />} />
-              <Route path='/settings' element={<Settings />} />
-              <Route path='/login' element={<Login />} />
-            </Routes>
-          </div>
+  }
+  render() {
+    if (!this.props.initialised) {
+      return <Preloader />
+    }
+    return (
+      <div className='app-wrapper'>
+        <HeaderContainer />
+        <Navbar store={store} />
+        <div className='app-wrapper-content'>
+          <Routes>
+            <Route exact path="/" element={<Navigate to={'/profile'} />} />
+            <Route path='/profile/:userId?' element={<ProfileContainer />} />
+            <Route path='/dialogs/*' element={
+              <Suspense fallback={<div><Preloader /></div>}>
+                <DialogsContainer />
+              </Suspense> } />
+            <Route path='/users/' element={<UsersContainer />} />
+            <Route path='/news' element={<News />} />
+            <Route path='/music' element={<Music />} />
+            <Route path='/settings' element={<Settings />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='*' element={<div>404 Page not found!</div>} />
+          </Routes>
         </div>
-     
-  )}
+      </div>
+
+    )
+  }
 };
 
 const mapStateToProps = (state) => ({

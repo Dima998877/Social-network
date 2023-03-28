@@ -5,10 +5,11 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { getUserProfile, getProfileStatus, updateProfileStatus, savePhoto, saveProfileData } from '../../redux/profile-reducer';
 import { withAuthRedirect } from '../../Hoc/withAuthRedirect';
 import { compose } from 'redux';
+import Preloader from '../Common/Preloader/Preloader';
 
 class ProfileContainer extends React.Component {
-   
-   refreshProfile(){
+
+   refreshProfile() {
       let userId = this.props.router.params.userId
       if (!userId) {
          userId = this.props.authorisedUserId
@@ -22,20 +23,25 @@ class ProfileContainer extends React.Component {
    componentDidMount() {
       this.refreshProfile()
    }
-   componentDidUpdate(prevProps, prevState){
-      if(this.props.router.params.userId !== prevProps.router.params.userId) {this.refreshProfile()}
+   componentDidUpdate(prevProps, prevState) {
+      if (this.props.router.params.userId !== prevProps.router.params.userId) { this.refreshProfile() }
    }
 
    render() {
-      return <Profile {...this.props}
-         profile={this.props.profile}
-         status={this.props.status}
-         updateProfileStatus={this.props.updateProfileStatus}
-         isOwner={!this.props.router.params.userId}
-         savePhoto={this.props.savePhoto}
-         saveProfileData={this.props.saveProfileData} 
-         />
-         
+      return (
+         <div>
+            {this.props.isFetching ? <Preloader /> : 
+            <Profile {...this.props}
+               profile={this.props.profile}
+               status={this.props.status}
+               updateProfileStatus={this.props.updateProfileStatus}
+               isOwner={!this.props.router.params.userId}
+               savePhoto={this.props.savePhoto}
+               saveProfileData={this.props.saveProfileData}
+            />
+            }
+         </div>
+      )
    }
 }
 
@@ -44,7 +50,8 @@ let mapStateToProps = (state) => {
       profile: state.profilePage.profile,
       status: state.profilePage.profileStatus,
       authorisedUserId: state.auth.userId,
-      isAuth: state.auth.isAuth
+      isAuth: state.auth.isAuth,
+      isFetching: state.profilePage.isFetching
    })
 }
 function withRouter(Component) {

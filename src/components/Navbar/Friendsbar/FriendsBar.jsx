@@ -5,7 +5,7 @@ import FriendsItem from "./FriendsItem/FriendsItem";
 
 const Friendsbar = (props) => {
 
-let fiendsElement = props.friendsData.map(f => <FriendsItem name={f.name} id={f.id}/>);
+let fiendsElement = props.friendsData.map(f => <FriendsItem key={f.id} name={f.name} id={f.id}/>);
   
 return (
     <div className={s.friends_bar}>
