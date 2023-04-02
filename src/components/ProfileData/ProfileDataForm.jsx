@@ -1,6 +1,6 @@
 import { reduxForm } from 'redux-form'
 import styles from './ProfileDataForm.module.css'
-import { createField, Input } from '../../../Common/FormControls/FormControls'
+import { createField, Input } from '../Common/FormControls/FormControls'
 
 const ProfileDataForm = ({ handleSubmit, profile, error }) => {
    return (

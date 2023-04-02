@@ -1,5 +1,6 @@
 import { stopSubmit } from 'redux-form'
-import { profileAPI } from '../API/Api'
+import profileAPI from './profile -api'
+
 
 const ADD_POST = 'profile/ADD_POST'
 const DELETE_POST = 'profile/DELETE_POST'

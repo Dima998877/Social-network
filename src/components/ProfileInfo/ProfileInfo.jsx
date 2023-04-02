@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Preloader from '../../Common/Preloader/Preloader';
+import Preloader from '../Common/Preloader/Preloader';
 import styles from './ProfileInfo.module.css';
-import noUserImage from '../../../assets/images/user-profile-picture.jpeg'
-import ProfileDataForm from './ProfileData/ProfileDataForm';
+import noUserImage from '../../assets/images/user-profile-picture.jpeg'
+import ProfileDataForm from '../ProfileData/ProfileDataForm';
 import ProfileStatusWithHooks from '../ProfileStatus/ProfileStatusWithHooks';
 
 export const Contacts = ({ contactTitle, contactValue }) => {

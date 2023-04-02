@@ -1,8 +1,8 @@
 import React from "react";
 import { Navigate } from 'react-router-dom';
 import styles from './Dialogs.module.css'
-import DialogsItem from './DialogsItem/DialogsItem'
-import Message from "./Message/Message";
+import DialogsItem from '../DialogsItem/DialogsItem'
+import Message from "../Message/Message";
 import { Field, reduxForm } from 'redux-form'
 import { Textarea } from '../Common/FormControls/FormControls';
 import { maxLengthCreator, required } from '../../utils/validators/validators';

@@ -1,9 +1,9 @@
 import React from "react";
 import styles from './MyPosts.module.css';
-import Post from "./Post/Post";
+import Post from '../Post/Post';
 import { Field, reduxForm } from 'redux-form'
-import { maxLengthCreator, required } from '../../../utils/validators/validators';
-import { Textarea } from '../../Common/FormControls/FormControls';
+import { maxLengthCreator, required } from '../../utils/validators/validators';
+import { Textarea } from '../Common/FormControls/FormControls';
 
 const maxLength15 = maxLengthCreator(15)
 

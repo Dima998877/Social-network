@@ -1,8 +1,7 @@
 import React from "react";
-import s from './../Dialogs.module.css'
+import s from '../Dialogs/Dialogs.module.css'
 import props from 'prop-types';
 import { NavLink } from "react-router-dom";
-
 
 let path = '/dialogs/' + props.id;
 
