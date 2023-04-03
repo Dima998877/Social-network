@@ -1,5 +1,5 @@
 import React from 'react'
-import Paginator from '../Common/Paginatator/Paginator'
+import Paginator from '../common/Paginatator/Paginator'
 import User from '../User/User'
 
 const Users = (props) => {

@@ -4,7 +4,7 @@ import { reduxForm } from 'redux-form'
 import { login } from '../../redux/auth-reducer'
 import { connect } from 'react-redux'
 import { Navigate } from 'react-router-dom';
-import { createField, Input } from '../Common/FormControls/FormControls'
+import { createField, Input } from '../common/FormControls/FormControls'
 import {required } from '../../utils/validators/validators'
 
 const LoginForm = (props) => { 

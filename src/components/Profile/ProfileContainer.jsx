@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import Profile from './Profile';
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { getUserProfile, getProfileStatus, updateProfileStatus, savePhoto, saveProfileData } from '../../redux/reduxProfile/profile-reducer';
-import { withAuthRedirect } from '../../Hoc/withAuthRedirect';
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
-import Preloader from '../Common/Preloader/Preloader';
+import Preloader from '../common/Preloader/Preloader';
 
 class ProfileContainer extends React.Component {
 

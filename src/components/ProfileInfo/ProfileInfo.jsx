@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Preloader from '../Common/Preloader/Preloader';
+import Preloader from '../common/Preloader/Preloader';
 import styles from './ProfileInfo.module.css';
 import noUserImage from '../../assets/images/user-profile-picture.jpeg'
 import ProfileDataForm from '../ProfileData/ProfileDataForm';

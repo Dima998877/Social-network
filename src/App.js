@@ -5,7 +5,6 @@ import Navbar from './components/Navbar/Navbar';
 import Music from './components/Music/Music';
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
-// import DialogsContainer from './components/Dialogs/DialogsContainer';
 import store from './redux/redux-store';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
@@ -14,7 +13,7 @@ import Login from './components/Login/Login';
 import { Component } from 'react';
 import { initialiseApp } from './redux/app-reducer';
 import { connect } from 'react-redux';
-import Preloader from './components/Common/Preloader/Preloader';
+import Preloader from './components/common/Preloader/Preloader';
 import { lazy } from 'react';
 
 const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer'))
