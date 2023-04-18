@@ -1,4 +1,3 @@
-import React from 'react';
 import profileReducer, { deletePostActionCreator } from './profile-reducer';
 
 test('delete post', () => {

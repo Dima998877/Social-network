@@ -6,33 +6,26 @@ const instance = Axios.create({
    baseURL: 'https://social-network.samuraijs.com/api/1.0/'
 })
 export const usersAPI = {
-   getUsers(currentPage = 1, pageSize = 5) {
-      return instance.get(`users?page=${currentPage}&count=${pageSize}`)
-         .then(response => response.data)
+   async getUsers(currentPage = 1, pageSize = 5) {
+      const response = await instance.get(`users?page=${currentPage}&count=${pageSize}`);
+      return response.data;
    },
-   setUnfollow(userId) {
-      return instance.delete(`follow/${userId}`).then(response => response.data)
+   async setUnfollow(userId) {
+      const response = await instance.delete(`follow/${userId}`);
+      return response.data;
    },
-   setFollow(userId) {
-      return instance.post(`follow/${userId}`).then(response => response.data)
+   async setFollow(userId) {
+      const response = await instance.post(`follow/${userId}`);
+      return response.data;
    },
 } 
 
 export const securityAPI = {
-   getCaptcha() {
-      return instance.get(`security/get-captcha-url`).then(response => response.data)
+   async getCaptcha() {
+      const response = await instance.get(`security/get-captcha-url`);
+      return response.data;
    }
 }
-export const authAPI = {
-   authMe() {
-      return instance.get(`auth/me`).then(response => response.data)
-   },
-   login(email, password, rememberMe = false, captcha = null) {
-      return instance.post(`auth/login`, {email, password, rememberMe, captcha}).then(response => response.data)
-   },
-   logout() {
-      return instance.delete(`auth/login`).then(response => response.data)
-   },
-}
+
 
 export default instance

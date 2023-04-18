@@ -1,5 +1,5 @@
 import { stopSubmit } from 'redux-form'
-import profileAPI from './profile -api'
+import profileAPI from './api'
 
 
 const ADD_POST = 'profile/ADD_POST'
@@ -67,7 +67,7 @@ export const setIsFetching = (currentState) => ({ type: SET_IS_FETCHING, current
 
 export const setProfileStatus = (data) => ({ type: SET_PROFILE_STATUS, data })
 export const getProfileStatus = (userId) => async (dispatch) => {
-   let res = await profileAPI.getProfileStatus(userId)
+   const res = await profileAPI.getProfileStatus(userId)
    dispatch(setProfileStatus(res))
 }
 export const updateProfileStatus = (status) => async (dispatch) => {

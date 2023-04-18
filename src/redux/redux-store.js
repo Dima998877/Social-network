@@ -2,11 +2,11 @@ import {applyMiddleware, combineReducers, compose, legacy_createStore as createS
 import { dialogsReducer } from './dialogs-reducer';
 import { friendsBarReducer } from './friendsBar-reducer';
 import usersReducer from './users-reducer';
-import authReducer from './auth-reducer';
-import profileReducer from './reduxProfile/profile-reducer';
+import authReducer from './reduxAuth/reducer';
+import profileReducer from './reduxProfile/reducer';
 import thunkMiddleware from 'redux-thunk'
 import {reducer as formReducer} from 'redux-form'
-import appReducer from './app-reducer';
+import appReducer from './reduxApp/app-reducer';
 
 const reducers = combineReducers({
    profilePage: profileReducer,

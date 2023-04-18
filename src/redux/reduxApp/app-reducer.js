@@ -1,4 +1,4 @@
-import { getAuthUserData } from './auth-reducer'
+import { getAuthUserData } from '../reduxAuth/reducer'
 
 const INITIALISED_SUCCESSFUL = 'app/INITIALISED_SUCCESSFUL'
 
@@ -20,7 +20,7 @@ const appReducer = (state = initialState, action) => {
 
 export const initialisedSuccessful = () => ({ type: INITIALISED_SUCCESSFUL })
 export const initialiseApp = () => (dispatch) => {
-   let promise = dispatch(getAuthUserData())
+   const promise = dispatch(getAuthUserData())
    Promise.all([promise]).then ( () => {
       dispatch (initialisedSuccessful())
    })

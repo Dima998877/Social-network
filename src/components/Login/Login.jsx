@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './Login.module.css'
 import { reduxForm } from 'redux-form'
-import { login } from '../../redux/auth-reducer'
+import { login } from '../../redux/reduxAuth/reducer'
 import { connect } from 'react-redux'
 import { Navigate } from 'react-router-dom';
 import { createField, Input } from '../common/FormControls/FormControls'

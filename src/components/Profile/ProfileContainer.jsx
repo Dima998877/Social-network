@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Profile from './Profile';
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { getUserProfile, getProfileStatus, updateProfileStatus, savePhoto, saveProfileData } from '../../redux/reduxProfile/profile-reducer';
+import { getUserProfile, getProfileStatus, updateProfileStatus, savePhoto, saveProfileData } from '../../redux/reduxProfile/reducer';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 import Preloader from '../common/Preloader/Preloader';
