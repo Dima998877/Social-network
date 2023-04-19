@@ -1,7 +1,7 @@
 .item {
-   color: red;
+  color: red;
 }
 .item img {
-   max-width: 50px;
-   border-radius: 50px;
+  max-width: 50px;
+  border-radius: 50px;
 }

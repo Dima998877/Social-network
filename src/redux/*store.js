@@ -1,4 +1,3 @@
-
 // import React from 'react';
 // import ReactDOM from 'react-dom/client';
 // import { dialogsReducer } from './dialogs-reducer';
@@ -60,33 +59,33 @@
 //       this._state.friendsBar = friendsBarReducer(this._state.friendsBar, action)
 //       this._callSubscriber(this._state);
 
-      //    if (action.type === add_post) {
-      //       let newPost = {
-      //          id: 6,
-      //          message: this._state.profilePage.newPostText,
-      //          likesCount: 0,
-      //       };
-      //       this._state.profilePage.posts.push(newPost);
-      //       this._state.profilePage.newPostText = '';
-      //       this._callSubscriber(this._state);
-      //    }
-      //    else if (action.type === update_new_post_text) {
-      //       this._state.profilePage.newPostText = action.newText;
-      //       this._callSubscriber(this._state);
-      //    }
-      //    else if (action.type === add_message) {
-      //       let newMessage = {
-      //          id: 4,
-      //          message: this._state.dialogsPage.newMessageText,
-      //       }
-      //       this._state.dialogsPage.messages.push(newMessage)
-      //       this._state.dialogsPage.newMessageText = '';
-      //       this._callSubscriber(this._state);
-      //    }
-      //    else if (action.type === update_new_message_text) {
-      //       this._state.dialogsPage.newMessageText = action.newMessageText;
-      //       this._callSubscriber(this._state);
-      //    }
+//    if (action.type === add_post) {
+//       let newPost = {
+//          id: 6,
+//          message: this._state.profilePage.newPostText,
+//          likesCount: 0,
+//       };
+//       this._state.profilePage.posts.push(newPost);
+//       this._state.profilePage.newPostText = '';
+//       this._callSubscriber(this._state);
+//    }
+//    else if (action.type === update_new_post_text) {
+//       this._state.profilePage.newPostText = action.newText;
+//       this._callSubscriber(this._state);
+//    }
+//    else if (action.type === add_message) {
+//       let newMessage = {
+//          id: 4,
+//          message: this._state.dialogsPage.newMessageText,
+//       }
+//       this._state.dialogsPage.messages.push(newMessage)
+//       this._state.dialogsPage.newMessageText = '';
+//       this._callSubscriber(this._state);
+//    }
+//    else if (action.type === update_new_message_text) {
+//       this._state.dialogsPage.newMessageText = action.newMessageText;
+//       this._callSubscriber(this._state);
+//    }
 //    }
 // };
 
@@ -111,7 +110,7 @@
 // image: 'https://upload.wikimedia.org/wikipedia/commons/4/48/Rapper_B.o.B_2013.jpg'},
 // { id: '2', name: 'Pete', status: 'Hi everyone!', follow: false, country: 'Poland', City: 'Krakow',
 // image: 'https://upload.wikimedia.org/wikipedia/commons/4/48/Rapper_B.o.B_2013.jpg'},
-// { id: '3', name: 'Nick', status: 'Do nothing', follow: true, country: 'Germany', City: 'Berlin', 
+// { id: '3', name: 'Nick', status: 'Do nothing', follow: true, country: 'Germany', City: 'Berlin',
 // image:'https://upload.wikimedia.org/wikipedia/commons/4/48/Rapper_B.o.B_2013.jpg'},
-// { id: '4', name: 'Marie', status: 'Piu-Piu', follow: false, country: 'USA', City: 'New York', 
+// { id: '4', name: 'Marie', status: 'Piu-Piu', follow: false, country: 'USA', City: 'New York',
 // image:'https://upload.wikimedia.org/wikipedia/commons/4/48/Rapper_B.o.B_2013.jpg'},

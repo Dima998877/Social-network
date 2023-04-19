@@ -3,25 +3,19 @@
 }
 :root {
   --main-black: #292b2f;
-  --main-gray: #E8E8E8;
+  --main-gray: #e8e8e8;
   --main-white: #f3f0f0;
 }
-
 .app-wrapper {
   display: grid;
-  grid-template-areas: 
-  'nav header'
-  'nav cont';
+  grid-template-areas:
+    'nav header'
+    'nav cont';
   grid-template-rows: 60px 1fr;
   grid-template-columns: 200px 10fr;
   /* grid-gap: 10px; */
 }
-
-.app-wrapper-content{
-    grid-area: cont;
-    background-color: var(--main-gray);
+.app-wrapper-content {
+  grid-area: cont;
+  background-color: var(--main-gray);
 }
-
-
-
-

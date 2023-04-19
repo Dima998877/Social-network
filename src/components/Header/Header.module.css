@@ -1,17 +1,14 @@
 .header {
-   grid-area: header;
-   background-color: var(--main-black);
- }
- .logo {
-   width: 60px;
-   background-color: aliceblue;
- }
- .login {
+  grid-area: header;
+  background-color: var(--main-black);
+}
+.logo {
+  width: 60px;
+  background-color: aliceblue;
+}
+.login {
   color: white;
   float: right;
   margin-right: 40px;
   margin-top: 20px;
- }
- .login a {
-  
- }
+}

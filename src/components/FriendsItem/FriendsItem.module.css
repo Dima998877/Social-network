@@ -1,10 +1,6 @@
-
-
-
 .friends_item {
   overflow: hidden;
   margin: 4px;
-
 }
 
 /* .friend_icon {} */
@@ -14,9 +10,8 @@
   margin-right: auto;
   width: 80%;
   border-radius: 50%;
-  
 }
 /* .friend_icon {} */
 .friend_name {
-text-align: center;
+  text-align: center;
 }
