@@ -1,43 +1,58 @@
 import React from 'react';
-import { reduxForm } from 'redux-form';
+import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { login } from '../../redux/auth/reducer';
 
 import styles from './Login.module.css';
 
-import { createField, Input } from '../common/FormControls/FormControls';
-import { required } from '../../utils/validators/validators';
-
 const LoginForm = (props) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      newMessageBody: '',
+    },
+  });
+  const onSubmit = (data) => {
+    props.onSubmit(data);
+  };
   return (
-    <form onSubmit={props.handleSubmit} className={styles.login_container}>
-      <div className={styles.formSummaryError}>{props.error}</div>
-      {createField('Email', 'email', Input, [required])}
-      {createField('Password', 'password', Input, [required], {
-        type: 'password',
-      })}
-      {createField(
-        null,
-        'rememberMe',
-        Input,
-        null,
-        { type: 'checkbox' },
-        'Remember me'
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.login_container}>
+      {/* <div className={styles.formSummaryError}>{errors.email?.message}</div> */}
+      <input
+        {...register('email', { required: true })}
+        aria-invalid={errors.firstName ? 'true' : 'false'}
+      />
+      {errors.email?.type === 'required' && (
+        <p className={styles.formSummaryError} role="alert">
+          Email is required
+        </p>
       )}
+      <input
+        type="password"
+        {...register('password', { required: true })}
+        aria-invalid={errors.password ? 'true' : 'false'}
+      />
+      {errors.password?.type === 'required' && (
+        <p className={styles.formSummaryError} role="alert">
+          Password is required
+        </p>
+      )}
+
+      <input type="checkbox" {...register('rememberMe')} />
       {props.captchaUrl && <img src={props.captchaUrl} alt="captcha img" />}
-      {props.captchaUrl &&
-        createField('Enter numbers', 'captcha', Input, [required])}
+      {props.captchaUrl && (
+        <input {...register('captcha', { required: 'required' })} />
+      )}
       <div>
         <button>Login</button>
       </div>
     </form>
   );
 };
-
-const LoginReduxForm = reduxForm({
-  form: 'login',
-})(LoginForm);
 
 const Login = (props) => {
   const onSubmit = (formData) => {
@@ -54,7 +69,7 @@ const Login = (props) => {
   return (
     <div>
       <h1>Please enter your login and password</h1>
-      <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl} />
+      <LoginForm onSubmit={onSubmit} captchaUrl={props.captchaUrl} />
     </div>
   );
 };

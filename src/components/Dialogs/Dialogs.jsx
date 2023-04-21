@@ -1,14 +1,13 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-// import { Field, reduxForm } from 'redux-form';
 import { useForm } from 'react-hook-form';
 import styles from './Dialogs.module.css';
 import DialogsItem from '../DialogsItem/DialogsItem';
 import Message from '../Message/Message';
 // import { Textarea } from '../common/FormControls/*FormControls';
-// import { maxLengthCreator, required } from '../../utils/validators/validators';
+// import { maxLengthCreator } from '../../utils/validators/validators';
 
-// const maxLength100 = maxLengthCreator(100);
+// const maxLength100 = maxLengthCreator(10);
 const AddMessageForm = (props) => {
   const {
     register,
@@ -21,7 +20,6 @@ const AddMessageForm = (props) => {
   });
   const onSubmit = (data) => {
     props.addMessage(data);
-    console.log(data);
   };
 
   return (
@@ -32,7 +30,7 @@ const AddMessageForm = (props) => {
         {...register('newMessageBody', {
           required: 'required',
           maxLength: {
-            value: 10,
+            value: 100,
             message: 'max length 10',
           },
         })}
