@@ -1,33 +1,47 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { Field, reduxForm } from 'redux-form';
-
+// import { Field, reduxForm } from 'redux-form';
+import { useForm } from 'react-hook-form';
 import styles from './Dialogs.module.css';
-
 import DialogsItem from '../DialogsItem/DialogsItem';
 import Message from '../Message/Message';
-import { Textarea } from '../common/FormControls/FormControls';
-import { maxLengthCreator, required } from '../../utils/validators/validators';
+// import { Textarea } from '../common/FormControls/*FormControls';
+// import { maxLengthCreator, required } from '../../utils/validators/validators';
 
-const maxLength100 = maxLengthCreator(100);
+// const maxLength100 = maxLengthCreator(100);
 const AddMessageForm = (props) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      newMessageBody: '',
+    },
+  });
+  const onSubmit = (data) => {
+    props.addMessage(data);
+    console.log(data);
+  };
+
   return (
-    <form onSubmit={props.handleSubmit} className={styles.text_input}>
-      <Field
-        component={Textarea}
-        name={'newMessageBody'}
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.text_input}>
+      <textarea
         placeholder={'Enter your message'}
         className={styles.text_input_area}
-        validate={[required, maxLength100]}
+        {...register('newMessageBody', {
+          required: 'required',
+          maxLength: {
+            value: 10,
+            message: 'max length 10',
+          },
+        })}
       />
+      <p>{errors.newMessageBody?.message}</p>
       <button className={styles.text_input_button}>Send</button>
     </form>
   );
 };
-
-const AddMessageReduxForm = reduxForm({ form: 'dialogsMessageForm' })(
-  AddMessageForm
-);
 
 const Dialogs = (props) => {
   const dialogsElement = props.dialogs.map((d) => (
@@ -38,8 +52,8 @@ const Dialogs = (props) => {
     <Message key={m.id} message={m.message} id={m.id} />
   ));
 
-  const addMessage = (values) => {
-    props.addMessage(values.newMessageBody);
+  const addMessage = (data) => {
+    props.addMessage(data.newMessageBody);
   };
 
   if (!props.isAuth) return <Navigate to="/login" />;
@@ -51,7 +65,7 @@ const Dialogs = (props) => {
         <div className={styles.contact_list}>{dialogsElement}</div>
         <div className={styles.messages}>{messagesElement}</div>
       </div>
-      <AddMessageReduxForm onSubmit={addMessage} />
+      <AddMessageForm addMessage={addMessage} />
     </div>
   );
 };

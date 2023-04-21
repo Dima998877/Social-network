@@ -44,7 +44,7 @@ const Paginator = ({
             return (
               <span
                 key={p}
-                onClick={(e) => onPageChanged(p)}
+                onClick={() => onPageChanged(p)}
                 className={cn(
                   {
                     [styles.selected_page]: currentPage === p,

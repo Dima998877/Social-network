@@ -17,7 +17,7 @@ const initialState = {
 export const dialogsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_MESSAGE:
-      let body = action.newMessageBody;
+      const body = action.newMessageBody;
       return {
         ...state,
         messages: [...state.messages, { id: 4, message: body }],

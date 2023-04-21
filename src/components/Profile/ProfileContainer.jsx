@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { compose } from 'redux';
 
+import { withAuthRedirect } from '../../Hoc/withAuthRedirect';
+import Preloader from '../common/Preloader/Preloader';
 import Profile from './Profile';
 import {
   getUserProfile,
@@ -11,8 +13,6 @@ import {
   savePhoto,
   saveProfileData,
 } from '../../redux/profile/reducer';
-import { withAuthRedirect } from '../../hoc/withAuthRedirect';
-import Preloader from '../common/Preloader/Preloader';
 
 class ProfileContainer extends React.Component {
   refreshProfile() {
