@@ -4,10 +4,7 @@ import { useForm } from 'react-hook-form';
 import styles from './Dialogs.module.css';
 import DialogsItem from '../DialogsItem/DialogsItem';
 import Message from '../Message/Message';
-// import { Textarea } from '../common/FormControls/*FormControls';
-// import { maxLengthCreator } from '../../utils/validators/validators';
 
-// const maxLength100 = maxLengthCreator(10);
 const AddMessageForm = (props) => {
   const {
     register,
@@ -25,13 +22,13 @@ const AddMessageForm = (props) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.text_input}>
       <textarea
-        placeholder={'Enter your message'}
+        placeholder="Enter your message"
         className={styles.text_input_area}
         {...register('newMessageBody', {
           required: 'required',
           maxLength: {
             value: 100,
-            message: 'max length 10',
+            message: 'max length 100 symbols',
           },
         })}
       />

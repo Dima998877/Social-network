@@ -1,50 +1,40 @@
 import React from 'react';
+import { Field, reduxForm } from 'redux-form';
 
 import styles from './MyPosts.module.css';
 import Post from '../Post/Post';
-import { useForm } from 'react-hook-form';
+import { maxLengthCreator, required } from '../../utils/validators/validators';
+import { Textarea } from '../common/FormControls/FormControls';
 
-function MyPostForm({ onSubmit }) {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    defaultValues: {
-      newMessageBody: '',
-    },
-  });
+const maxLength15 = maxLengthCreator(15);
 
+const MyPostForm = (props) => {
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.text_input}>
-      <textarea
-        {...register('postText', {
-          minLength: {
-            value: 2,
-            message: 'max length 2 symbols',
-          },
-        })}
+    <form onSubmit={props.handleSubmit} className={styles.text_input}>
+      <Field
+        component={Textarea}
+        name={'postText'}
+        validate={[required, maxLength15]}
         placeholder={'Star typing your post'}
         className={styles.text_input_area}
       />
       <button className={styles.text_input_button}> Publish</button>
-      {/* <span>{errors.postText?.message}</span> */}
     </form>
   );
-}
+};
+const MyPostReduxForm = reduxForm({ form: 'post' })(MyPostForm);
 const MyPosts = (props) => {
   const postsElements = props.posts.map((p) => (
     <Post message={p.message} likesCount={p.likesCount} key={p.id} />
   ));
   const addPost = (values) => {
     props.addPost(values.postText);
-    console.log(values.postText);
   };
 
   return (
     <div className={styles.posts_container}>
       <h3>My posts</h3>
-      <MyPostForm onSubmit={addPost} />
+      <MyPostReduxForm onSubmit={addPost} />
       <div className={styles.posts}>{postsElements}</div>
     </div>
   );
