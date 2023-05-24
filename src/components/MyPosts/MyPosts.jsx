@@ -5,15 +5,7 @@ import Post from '../Post/Post';
 import { useForm } from 'react-hook-form';
 
 function MyPostForm({ onSubmit }) {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    defaultValues: {
-      newMessageBody: '',
-    },
-  });
+  const { register, handleSubmit } = useForm();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.text_input}>
@@ -28,7 +20,6 @@ function MyPostForm({ onSubmit }) {
         className={styles.text_input_area}
       />
       <button className={styles.text_input_button}> Publish</button>
-      {/* <span>{errors.postText?.message}</span> */}
     </form>
   );
 }
