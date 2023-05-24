@@ -1,26 +1,41 @@
-import { reduxForm } from 'redux-form';
+import { useForm } from 'react-hook-form';
 
-import styles from './ProfileDataForm.module.css';
-
-import { createField, Input } from '../common/FormControls/FormControls';
-
-const ProfileDataForm = ({ handleSubmit, profile, error }) => {
+const ProfileDataForm = ({ initialValues, profile, onSubmit }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ defaultValues: initialValues });
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <button>save</button>
       </div>
       <div>
         <b>Name:</b>
-        {createField('Full name', 'fullName', Input, [])}
+        <input
+          placeholder='Full name'
+          {...register('fullName', { required: true })}
+        />{' '}
+        {errors.fullname && <span>'This field is required'</span>}
       </div>
       <div>
         <b>About me:</b>
-        {createField('About me', 'aboutMe', Input, [])}
+        <input
+          placeholder='About me'
+          {...register('aboutMe', { required: true })}
+        />{' '}
+        {errors.aboutMe && <span>'This field is required'</span>}
       </div>
       <div>
         <b>Job status:</b>
-        {createField('Job status', 'lookingForAJobDescription', Input, [])}
+        <input
+          placeholder='Job status'
+          {...register('lookingForAJobDescription', { required: true })}
+        />{' '}
+        {errors.lookingForAJobDescription && (
+          <span>'This field is required'</span>
+        )}
       </div>
 
       <div>
@@ -29,20 +44,13 @@ const ProfileDataForm = ({ handleSubmit, profile, error }) => {
           return (
             <div key={key}>
               <b>{key}:</b>
-              {createField(key, 'contacts.' + key, Input, [])}
+              <input placeholder={key} {...register(`contacts.${key}`)} />
             </div>
           );
         })}
-        <div className={styles.formSummaryError}>{error}</div>
       </div>
     </form>
   );
 };
 
-const ProfileDataReduxForm = reduxForm({
-  form: 'edit-profile',
-  enableReinitialize: true,
-  destroyOnUnmount: false,
-})(ProfileDataForm);
-
-export default ProfileDataReduxForm;
+export default ProfileDataForm;
