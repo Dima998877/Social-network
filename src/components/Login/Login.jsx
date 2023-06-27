@@ -20,37 +20,46 @@ const LoginForm = (props) => {
     props.onSubmit(data);
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.login_container}>
-      {/* <div className={styles.formSummaryError}>{errors.email?.message}</div> */}
-      <input
-        {...register('email', { required: true })}
-        aria-invalid={errors.firstName ? 'true' : 'false'}
-      />
-      {errors.email?.type === 'required' && (
-        <p className={styles.formSummaryError} role="alert">
-          Email is required
-        </p>
-      )}
-      <input
-        type="password"
-        {...register('password', { required: true })}
-        aria-invalid={errors.password ? 'true' : 'false'}
-      />
-      {errors.password?.type === 'required' && (
-        <p className={styles.formSummaryError} role="alert">
-          Password is required
-        </p>
-      )}
+    <>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className={styles.login_container}
+      >
+        {/* <div className={styles.formSummaryError}>{errors.email?.message}</div> */}
+        <input
+          {...register('email', { required: true })}
+          aria-invalid={errors.firstName ? 'true' : 'false'}
+        />
+        {errors.email?.type === 'required' && (
+          <p className={styles.formSummaryError} role='alert'>
+            Email is required
+          </p>
+        )}
+        <input
+          type='password'
+          {...register('password', { required: true })}
+          aria-invalid={errors.password ? 'true' : 'false'}
+        />
+        {errors.password?.type === 'required' && (
+          <p className={styles.formSummaryError} role='alert'>
+            Password is required
+          </p>
+        )}
 
-      <input type="checkbox" {...register('rememberMe')} />
-      {props.captchaUrl && <img src={props.captchaUrl} alt="captcha img" />}
-      {props.captchaUrl && (
-        <input {...register('captcha', { required: 'required' })} />
-      )}
+        <input type='checkbox' {...register('rememberMe')} />
+        {props.captchaUrl && <img src={props.captchaUrl} alt='captcha img' />}
+        {props.captchaUrl && (
+          <input {...register('captcha', { required: 'required' })} />
+        )}
+        <div>
+          <button>Login</button>
+        </div>
+      </form>
       <div>
-        <button>Login</button>
+        <li> Email: free@samuraijs.com</li>
+        <li>Password: free</li>
       </div>
-    </form>
+    </>
   );
 };
 

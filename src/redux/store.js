@@ -5,7 +5,6 @@ import {
   legacy_createStore as createStore,
 } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import { reducer as formReducer } from 'redux-form';
 
 import { dialogsReducer } from './dialogs-reducer';
 import { friendsBarReducer } from './friendsBar-reducer';
@@ -20,7 +19,6 @@ const reducers = combineReducers({
   friendsBar: friendsBarReducer,
   usersPage: usersReducer,
   auth: authReducer,
-  form: formReducer,
   app: appReducer,
 });
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

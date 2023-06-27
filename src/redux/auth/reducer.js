@@ -1,5 +1,3 @@
-import { stopSubmit } from 'redux-form';
-
 import securityAPI from './securityApi';
 import authAPI from './api';
 
@@ -50,7 +48,7 @@ export const login =
       dispatch(getCaptcha());
     }
     const message = res.messages.length > 0 ? res.messages[0] : 'some error';
-    dispatch(stopSubmit('login', { _error: message }));
+    // dispatch(stopSubmit('login', { _error: message }));
   };
 
 export const logout = () => async (dispatch) => {
