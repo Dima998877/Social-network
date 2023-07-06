@@ -1,8 +1,9 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
 
 import styles from './MyPosts.module.css';
+
 import Post from '../Post/Post';
-import { useForm } from 'react-hook-form';
 
 function MyPostForm({ onSubmit }) {
   const { register, handleSubmit } = useForm();

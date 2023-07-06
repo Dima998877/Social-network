@@ -2,9 +2,10 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import { login } from '../../redux/auth/reducer';
 
 import styles from './Login.module.css';
+
+import { login } from '../../redux/auth/reducer';
 
 const LoginForm = (props) => {
   const {
