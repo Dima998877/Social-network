@@ -1,4 +1,3 @@
-import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
@@ -6,18 +5,22 @@ import styles from './Dialogs.module.css';
 import DialogsItem from '../DialogsItem/DialogsItem';
 import Message from '../Message/Message';
 
-const AddMessageForm = (props) => {
+interface UseFormInputs {
+  newMessageBody: string;
+}
+
+const AddMessageForm = ({ addMessage }: any) => {
   const {
-    register,
     handleSubmit,
+    register,
     formState: { errors },
   } = useForm({
     defaultValues: {
       newMessageBody: '',
     },
   });
-  const onSubmit = (data) => {
-    props.addMessage(data);
+  const onSubmit = (data: UseFormInputs) => {
+    addMessage(data);
   };
 
   return (
@@ -49,7 +52,7 @@ const Dialogs = (props) => {
     <Message key={m.id} message={m.message} id={m.id} />
   ));
 
-  const addMessage = (data) => {
+  const addMessage = (data: UseFormInputs) => {
     props.addMessage(data.newMessageBody);
   };
 
