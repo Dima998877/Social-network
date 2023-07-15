@@ -1,63 +1,15 @@
-// import { stopSubmit } from 'redux-form';
+import {
+  ADD_POST,
+  DELETE_POST,
+  SAVE_PHOTO_SUCCESS,
+  SAVE_PROFILE_DATA,
+  SET_IS_FETCHING,
+  SET_PROFILE_STATUS,
+  SET_USER_PROFILE,
+} from './actions';
 import profileAPI from './api';
+import { InitialStateType, ProfileType, PhotosType, PostsType } from './types';
 
-const ADD_POST = 'profile/ADD_POST';
-const DELETE_POST = 'profile/DELETE_POST';
-const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
-const SET_PROFILE_STATUS = 'profile/SET_PROFILE_STATUS';
-const SAVE_PHOTO_SUCCESS = 'profile/SAVE_PHOTO_SUCCESS';
-const SAVE_PROFILE_DATA = 'profile/SAVE_PROFILE_DATA';
-const SET_IS_FETCHING = 'profile/SET_IS_FETCHING';
-
-type Action<T> = {
-  type: T;
-  posts: Array<PostsType>;
-  profile: null | ProfileType;
-  profileStatus: string;
-  isFetching: boolean;
-  newPostText: string;
-  id: number;
-  data: string;
-  formData: any;
-};
-
-enum ActionTypes {
-  ADD_POST = 'profile/ADD_POST',
-  DELETE_POST = 'profile/DELETE_POST',
-  SET_USER_PROFILE = 'profile/SET_USER_PROFILE',
-  SET_PROFILE_STATUS = 'profile/SET_PROFILE_STATUS',
-  SAVE_PHOTO_SUCCESS = 'profile/SAVE_PHOTO_SUCCESS',
-  SAVE_PROFILE_DATA = 'profile/SAVE_PROFILE_DATA',
-  SET_IS_FETCHING = 'profile/SET_IS_FETCHING',
-}
-
-type PostsType = {
-  id: number;
-  message: string;
-  likesCount: number;
-};
-type ContactsType = {
-  github: string;
-  vk: string;
-  facebook: string;
-  instagram: string;
-  twitter: string;
-  website: string;
-  youtube: string;
-  mainLink: string;
-};
-type PhotosType = {
-  small: string;
-  large: string;
-};
-type ProfileType = {
-  userId: number;
-  lookingForAJob: boolean;
-  lookingForAJobDescription: string;
-  fullName: string;
-  contacts: ContactsType;
-  photos: PhotosType;
-};
 const initialState = {
   posts: [
     { id: 1, message: "Hello! It's my first message!", likesCount: 48 },
@@ -70,10 +22,9 @@ const initialState = {
   isFetching: false,
   newPostText: '',
 };
-type InitialStateType = typeof initialState;
 const profileReducer = (
-  state: InitialStateType = initialState,
-  action: Action<ActionTypes>
+  state = initialState,
+  action: IAction
 ): InitialStateType => {
   switch (action.type) {
     case ADD_POST: {
@@ -94,11 +45,14 @@ const profileReducer = (
     case SET_PROFILE_STATUS:
       return { ...state, profileStatus: action.data };
     case SAVE_PHOTO_SUCCESS:
-      return { ...state, profile: { ...state.profile, photos: action.photos } };
+      return {
+        ...state,
+        profile: { ...state.profile, photos: action.photos } as ProfileType,
+      };
     case SAVE_PROFILE_DATA:
       return {
         ...state,
-        profile: { ...state.profile, photos: action.formData },
+        profile: { ...state.profile, photos: action.formData } as ProfileType,
       };
     case SET_IS_FETCHING:
       return { ...state, isFetching: action.currentState };
@@ -106,53 +60,33 @@ const profileReducer = (
       return state;
   }
 };
-type AddPostACType = {
-  type: typeof ADD_POST;
-  newPostText: string;
-};
-type DeletePostACType = {
-  type: typeof DELETE_POST;
-  id: number;
-};
-type SetUserProfileType = {
-  type: typeof SET_USER_PROFILE;
-  profile: ProfileType;
-};
-type SetProfileStatusType = { type: typeof SET_PROFILE_STATUS; data: string };
-type SavePhotoSuccessType = {
-  type: typeof SAVE_PHOTO_SUCCESS;
-  photos: PhotosType;
-};
-type setIsFetchingType = {
-  type: typeof SET_IS_FETCHING;
-  currentState: boolean;
-};
 
-export const addPostAC = (newPostText: string): AddPostACType => ({
+export const addPostAC = (newPostText: string) => ({
   type: ADD_POST,
   newPostText,
 });
-export const deletePostActionCreator = (id: number): DeletePostACType => ({
+export const deletePostActionCreator = (id: number) => ({
   type: DELETE_POST,
   id,
 });
 
-export const setUserProfile = (profile: ProfileType): SetUserProfileType => ({
+export const setUserProfile = (profile: ProfileType) => ({
   type: SET_USER_PROFILE,
   profile,
 });
+
 export const getUserProfile = (userId: number) => async (dispatch: any) => {
   dispatch(setIsFetching(true));
   const res = await profileAPI.getProfile(userId);
   dispatch(setUserProfile(res));
   dispatch(setIsFetching(false));
 };
-export const setIsFetching = (currentState: boolean): setIsFetchingType => ({
+export const setIsFetching = (currentState: boolean) => ({
   type: SET_IS_FETCHING,
   currentState,
 });
 
-export const setProfileStatus = (data: string): SetProfileStatusType => ({
+export const setProfileStatus = (data: string) => ({
   type: SET_PROFILE_STATUS,
   data,
 });
@@ -167,7 +101,7 @@ export const updateProfileStatus =
       dispatch(setProfileStatus(status));
     }
   };
-export const savePhotoSuccess = (photos: PhotosType): SavePhotoSuccessType => ({
+export const savePhotoSuccess = (photos: PhotosType) => ({
   type: SAVE_PHOTO_SUCCESS,
   photos,
 });
@@ -179,7 +113,7 @@ export const savePhoto = (file: any) => async (dispatch: any) => {
 };
 
 export const saveProfileData =
-  (profile: PhotosType) => async (dispatch, getState) => {
+  (profile: ProfileType) => async (dispatch, getState) => {
     const userId = getState().auth.userId;
     const res = await profileAPI.saveProfileData(profile);
     if (res.resultCode === 0) {

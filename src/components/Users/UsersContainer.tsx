@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
+import { InitialStateType, UserType } from '../../redux/users/reducer';
 import {
   follow,
   setCurrentPage,
@@ -19,13 +20,29 @@ import {
   getTotalUsersCount,
   getUsers,
 } from '../../redux/users/selector';
+import { AppStateType } from '../../redux/store';
 
-class UsersContainer extends React.Component {
+type PropsType = {
+  users: Array<UserType>;
+  totalUsersCount: number;
+  pageSize: number;
+  currentPage: number;
+  isFetching: boolean;
+  followInProgress: Array<number>;
+
+  follow: (userId: number) => void;
+  unfollow: (userId: number) => void;
+  setCurrentPage: (pageNumber: number) => void;
+  tongleFollowInProgress: (isFetching: boolean, userId: number) => void;
+  getUsers: (currentPage: number, pageSize: number) => void;
+};
+
+class UsersContainer extends React.Component<PropsType> {
   componentDidMount() {
     const { currentPage, pageSize } = this.props;
     this.props.getUsers(currentPage, pageSize);
   }
-  onPageChanged = (pageNumber) => {
+  onPageChanged = (pageNumber: number) => {
     const { pageSize } = this.props;
     this.props.getUsers(pageNumber, pageSize);
   };
@@ -53,7 +70,7 @@ class UsersContainer extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: AppStateType) => {
   return {
     users: getUsers(state),
     totalUsersCount: getTotalUsersCount(state),

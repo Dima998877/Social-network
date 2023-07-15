@@ -17,11 +17,9 @@ enum ActionType {
   SET_IS_FETCHING = 'users/SET_IS_FETCHING',
   TONGLE_FOLLOW_IN_PROGRESS = 'users/TONGLE_FOLLOW_IN_PROGRESS',
 }
-
 type Action<T> = {
   type: T;
 };
-
 interface IAction extends Action<ActionType> {
   userId: number;
   users: Array<UserType>;
@@ -30,29 +28,22 @@ interface IAction extends Action<ActionType> {
   currentState: boolean;
   followInProgress: Array<number>;
 }
-type UserType = {
-  count: number;
-  page: number;
-  term: string;
-  friend: boolean;
+export type UserType = {
+  id: number;
+  name: string;
+  status: string;
+  photos: { small: null | string; large: null | string };
+  followed: boolean;
 };
-
-type InitialStateType = {
-  users: Array<UserType>;
-  pageSize: number;
-  totalUsersCount: number;
-  currentPage: number;
-  isFetching: boolean;
-  followInProgress: Array<number>;
-};
+export type InitialStateType = typeof initialState;
 
 const initialState = {
-  users: [],
+  users: [] as Array<UserType>,
   pageSize: 10,
   totalUsersCount: 1,
   currentPage: 1,
   isFetching: false,
-  followInProgress: [],
+  followInProgress: [] as Array<number>,
 };
 
 const usersReducer = (
@@ -99,7 +90,10 @@ const usersReducer = (
       return state;
   }
 };
-export const followSuccess = (userId: number) => ({ type: FOLLOW, userId });
+export const followSuccess = (userId: number) => ({
+  type: FOLLOW,
+  userId,
+});
 export const unfollowSuccess = (userId: number) => ({ type: UNFOLLOW, userId });
 export const setUsers = (users: UserType) => ({ type: SET_USERS, users });
 export const setCurrentPage = (currentPage: number) => ({
@@ -122,7 +116,9 @@ export const tongleFollowInProgress = (
   currentState,
   userId,
 });
-
+type ResponceType = {
+  res: { items: Array<UserType>; totalCount: number; error: string | null };
+};
 export const requestUsers = (page: number, pageSize: number) => {
   return async (dispatch: any) => {
     dispatch(setIsFetching(true));
@@ -134,7 +130,7 @@ export const requestUsers = (page: number, pageSize: number) => {
   };
 };
 export const follow = (userId: number) => {
-  return async (dispatch) => {
+  return async (dispatch: any) => {
     dispatch(tongleFollowInProgress(true, userId));
     const res = await usersAPI.setFollow(userId);
     if (res.resultCode === 0) {

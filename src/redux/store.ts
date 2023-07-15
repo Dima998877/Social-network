@@ -13,7 +13,10 @@ import authReducer from './auth/reducer';
 import profileReducer from './profile/reducer';
 import appReducer from './app/reducer';
 
-const reducers = combineReducers({
+type RootReducerType = typeof rootReducer;
+export type AppStateType = ReturnType<RootReducerType>;
+
+const rootReducer = combineReducers({
   profilePage: profileReducer,
   dialogsPage: dialogsReducer,
   friendsBar: friendsBarReducer,
@@ -21,9 +24,11 @@ const reducers = combineReducers({
   auth: authReducer,
   app: appReducer,
 });
+
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
-  reducers,
+  rootReducer,
   composeEnhancers(applyMiddleware(thunkMiddleware))
 );
 
